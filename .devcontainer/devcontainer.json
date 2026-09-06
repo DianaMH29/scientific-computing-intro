@@ -1,0 +1,30 @@
+{
+  "name": "scientific-computing-intro (Python 3.10)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.pythonPath": "/usr/local/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker",
+        "ms-python.vscode-pylance",
+        "njpwerner.autodocstring"
+      ]
+    }
+  },
+  "remoteUser": "dev",
+  "workspaceFolder": "/workspaces/scientific-computing-intro",
+  "postCreateCommand": "pip install -e .[dev,ml,viz]",
+  "runArgs": ["--network=host", "--env-file", ".devcontainer/.env"],
+  "mounts": [
+    "source=${localEnv:USERPROFILE}/.aws,target=/home/dev/.aws,type=bind"
+    // "source=${env:HOME}/.aws,target=/home/dev/.aws,type=bind" #Replace if you are using Linux or Mac
+  ]
+}
